@@ -19,11 +19,13 @@ geocode.geocodeAddress(argv.a, (errorMsg, result) => {
 		console.log(errorMsg);
 	}else{
 		console.log(JSON.stringify(result, undefined, 4));
-		weather.getWeather(result.latitude, result.longitude, (error, result) => {
-			if(error) console.log(error);
-			if(result){
-				console.log(JSON.stringify(result, undefined, 2));
-			}
-		});
+		weather.getWeather(result.latitude, result.longitude, printWeather);
 	}
 });
+
+var printWeather = (error , result) => {
+	if(error) console.log(error);
+	if(result){
+		console.log(JSON.stringify(result, undefined, 2));
+	}
+}
