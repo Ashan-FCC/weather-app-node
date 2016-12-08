@@ -1,8 +1,8 @@
 
 const yargs = require('yargs');
 const axios = require('axios');
-const geocode = require('./geocode/geocode');
-const weather = require('./weather/weather');
+//const geocode = require('./geocode/geocode');
+//const weather = require('./weather/weather');
 const argv = yargs
 				.options({
 					address: {
@@ -31,6 +31,7 @@ axios.get(geocodeUrl).then((response) => {
 }).then((response) => {
 	var temp = response.data.currently.temperature;
 	var appTemp = response.data.currently.apparentTemperature;
+	console.log(JSON.stringify(response.data, null, 2));
 	console.log(`It's currently ${temp} but it feel like ${appTemp}`);
 }).catch((error) => {
 	if(error.code === 'ENOTFOUND')
